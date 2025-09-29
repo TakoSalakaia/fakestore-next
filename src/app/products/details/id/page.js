@@ -1,3 +1,28 @@
-export default function ProductDetails({ params }) {
-  return <h1>Product Details placeholder for {params.id}</h1>;
+export const dynamic = "force-dynamic"; // ახალი მონაცემების მისაღებად
+
+async function getProduct(id) {
+  const res = await fetch(`https://fakestoreapi.com/products/${id}`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to fetch product"); //შეცდომა მონაცემების მიღებისას
+  return res.json();
+}
+
+export default async function ProductDetails({ params }) { // პროდუქტის დეტალები
+  const product = await getProduct(params.id);
+  return (
+    <article className="grid" style={{ gridTemplateColumns: "1fr 1.2fr", alignItems: "start" }}> 
+      <div className="card"><img src={product.image} alt={product.title} /></div>
+      <div className="stack">
+        <h1>{product.title}</h1>
+        <div className="row" style={{ gap: "1.5rem" }}>
+          <span className="price">${product.price}</span>
+          <span className="muted">Category: {product.category}</span>
+        </div>
+        <p>{product.description}</p>
+        <div className="row">
+          <span>⭐ {product.rating?.rate ?? "-"}</span>
+          <span className="muted">({product.rating?.count ?? 0} reviews)</span>
+        </div>
+      </div>
+    </article>
+  );
 }

@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation"; // მომხმარებლის გადამისამართება
 export default function Home() {
-  return <h1>Home placeholder</h1>;
+  redirect("/products"); // მთავარი გვერდი გადამისამართდება პროდუქტების გვერდზე
 }
