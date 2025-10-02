@@ -3,6 +3,6 @@
 Next.js project for midterm.  
 Fake online shop with products, product details, cart and profile pages.  
 
-Open http://localhost:3000
+Open [http://localhost:3000](http://localhost:3000/products)
 to see the app.
  
