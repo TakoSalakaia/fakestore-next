@@ -1,21 +1,29 @@
-export const dynamic = "force-dynamic"; // ყოველთვის ახალი მონაცემი
+import Link from "next/link";
 
-async function getProducts() { // პროდუქტის მონაცემების მიღება
-  const res = await fetch("https://fakestoreapi.com/products", { cache: "no-store" }); 
-  if (!res.ok) throw new Error("Failed to fetch products"); 
+export const dynamic = "force-dynamic";
+
+async function getProducts() {
+  const res = await fetch("https://fakestoreapi.com/products", { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to fetch products"); //შეცდომა მონაცემების მიღებისას
   return res.json();
 }
 
-export default async function ProductsPage() { // პროდუქტის გვერდი
+export default async function ProductsPage() {
   const products = await getProducts();
+
   return (
     <section className="grid">
       {products.map((p) => (
-        <a key={p.id} href={`/products/details/${p.id}`} className="card">
+        <div key={p.id} className="card">
           <img src={p.image} alt={p.title} />
-          <strong>{p.title}</strong>
+          <h3>{p.title}</h3>
           <span className="price">${p.price}</span>
-        </a>
+
+          {/*დეტალები*/}
+          <Link href={`/products/${p.id}`} className="btn">
+            View Details
+          </Link>
+        </div>
       ))}
     </section>
   );

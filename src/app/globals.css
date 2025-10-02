@@ -1,0 +1,157 @@
+:root { 
+  --max: 1200px; 
+  --primary: #111827; 
+  --secondary: #6b7280; 
+  --bg: #f9fafb; 
+  --white: #ffffff; 
+  --radius: 0.75rem;
+  --shadow: 0 4px 8px rgba(0,0,0,0.05);
+  --shadow-hover: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+* { box-sizing: border-box; }
+
+html, body { 
+  padding: 0; 
+  margin: 0; 
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+  background: var(--bg);
+}
+
+a { 
+  color: inherit; 
+  text-decoration: none; 
+}
+
+.container { 
+  max-width: var(--max); 
+  margin: 0 auto; 
+  padding: 1rem; 
+}
+
+
+nav { 
+  border-bottom: 1px solid #e5e7eb; 
+  background: var(--white); 
+  position: sticky; 
+  top: 0; 
+  z-index: 10; 
+  box-shadow: var(--shadow);
+}
+
+.navbar { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 1rem; 
+}
+
+.navlinks { 
+  display: flex; 
+  gap: .75rem; 
+}
+
+.navlink { 
+  padding: .5rem .75rem; 
+  border-radius: var(--radius); 
+  transition: 0.2s ease;
+}
+
+.navlink:hover { 
+  background: #f3f4f6;
+}
+
+.navlink.active { 
+  background: var(--primary); 
+  color: var(--white); 
+}
+
+
+footer { 
+  border-top: 1px solid #e5e7eb; 
+  padding: 2rem 0; 
+  margin-top: 2rem; 
+  color: var(--secondary); 
+  text-align: center;
+}
+
+
+.grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  gap: 2rem; 
+  margin-top: 2rem;
+}
+
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card .btn {
+  margin-top: auto;  
+  width: 100%;       
+}
+
+.btn {
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: var(--white);
+  padding: 0.75rem 1rem;  
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.2s ease;
+  text-align: center;
+  font-weight: 600;
+}
+
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.card img { 
+  width: 100%; 
+  height: 200px; 
+  object-fit: contain; 
+  margin-bottom: .5rem;
+}
+
+.price { 
+  font-weight: 700; 
+  color: var(--primary);
+}
+
+
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn.secondary { 
+  background: var(--white); 
+  color: var(--primary); 
+}
+
+.row { 
+  display: flex; 
+  align-items: center; 
+  gap: .75rem; 
+}
+
+.stack { 
+  display: grid; 
+  gap: .5rem; 
+}
+
+.muted { 
+  color: var(--secondary); 
+}

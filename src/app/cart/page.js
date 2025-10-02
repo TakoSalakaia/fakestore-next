@@ -25,7 +25,7 @@ export default function CartPage() {
     <section className="stack">  
       <h1>Cart</h1>
       <div className="stack">
-        {items.map((it) => ( //რენდერდება თითოეული ნივთისთვის, სვეტი1 პროდუქტის დასახელებისთვის და ფასი, სვეტი2 რაოდენობის 
+        {items.map((it) => ( //რენდერდება თითოეული ნივთისთვის, სვეტი1 პროდუქტის დასახელებისთვის და ფასი, სვეტი2 რაოდენობის კონტროლისთვის 
           <div key={it.id} className="card" style={{ display: "grid", gridTemplateColumns: "1fr auto", alignItems: "center" }}>
             <div className="stack">
               <strong>{it.title}</strong>

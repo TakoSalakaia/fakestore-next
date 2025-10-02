@@ -1,10 +1,13 @@
-import "./globals.css"; 
-import NavBar from "@/components/NavBar"; 
+import "./globals.css";
+import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 
-export const metadata = { title: "Midterm Shop", description: "FakeStore demo with App Router" }; //  მონაცემები
+export const metadata = { 
+  title: "Midterm Shop",
+  description: "FakeStore demo with App Router",
+};
 
-export default function RootLayout({ children }) { // ძირითადი ლეიაუტის ფუნქცია
+export default function RootLayout({ children }) { // ძირითადი 
   return (
     <html lang="ka">
       <body>
@@ -23,3 +26,5 @@ export default function RootLayout({ children }) { // ძირითადი �
     </html>
   );
 }
+
+

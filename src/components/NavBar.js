@@ -21,3 +21,5 @@ export default function NavBar() { // ნავბარის კომპო�
     </div>
   );
 }
+
+
