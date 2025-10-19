@@ -1,49 +1,95 @@
-"use client";
-import { useMemo, useState } from "react"; // შეუძლია ჰუქების გამოყენება
-
-const seed = //  მონაცემების საწყისი
-[
-  { id: 1, title: "Fjallraven Backpack", price: 109.95, qty: 1 },
-  { id: 2, title: "Mens Casual Premium T-Shirt", price: 22.3, qty: 1 },
-];
+'use client';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectCartItems,
+  selectTotalQty,
+  selectTotalAmount,
+  increaseQty,
+  decreaseQty,
+  removeFromCart,
+  clearCart,
+} from '@/store/cartSlice';
 
 export default function CartPage() {
-  const [items, setItems] = useState(seed); //კალათის მონაცემების მდგომარეობა და მისი განახლების ფუნქცია
-
-  function changeQty(id, delta) // რაოდენობის შეცვლის ფუნქცია
-   {
-    setItems((prev) => prev.map((it) => {
-      if (it.id !== id) return it;
-      const next = Math.min(10, Math.max(1, it.qty + delta));
-      return { ...it, qty: next };
-    }));
-  }
-
-  const total = useMemo(() => items.reduce((sum, it) => sum + it.price * it.qty, 0), [items]); // ჯამური ღირებულების გამოთვლა
+  const items = useSelector(selectCartItems);
+  const totalQty = useSelector(selectTotalQty);
+  const totalAmt = useSelector(selectTotalAmount);
+  const dispatch = useDispatch();
 
   return (
-    <section className="stack">  
+    <section className="stack">
       <h1>Cart</h1>
-      <div className="stack">
-        {items.map((it) => ( //რენდერდება თითოეული ნივთისთვის, სვეტი1 პროდუქტის დასახელებისთვის და ფასი, სვეტი2 რაოდენობის კონტროლისთვის 
-          <div key={it.id} className="card" style={{ display: "grid", gridTemplateColumns: "1fr auto", alignItems: "center" }}>
-            <div className="stack">
-              <strong>{it.title}</strong>
-              <span className="price">${it.price.toFixed(2)}</span>
-            </div>
-            <div className="row">
-              <button className="btn secondary" onClick={() => changeQty(it.id, -1)}>-</button>
-              <span>{it.qty}</span>
-              <button className="btn" onClick={() => changeQty(it.id, +1)}>+</button>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="row" style={{ justifyContent: "space-between", alignItems: "center" }}> 
-        <strong>Total:</strong>                    
-        <strong>${total.toFixed(2)}</strong>        
-      </div> 
-    </section>
-  ); }
 
-//თითქმის თუ ფიქსდ ჯამური
+      {items.length === 0 ? (
+        <p>Cart is empty.</p>
+      ) : (
+        <>
+          <div className="stack">
+            {items.map((it) => (
+              <div
+                key={it.id}
+                className="card"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr auto',
+                  alignItems: 'center',
+                }}
+              >
+                <div className="stack">
+                  <strong>{it.title}</strong>
+                  <span className="price">${it.price.toFixed(2)}</span>
+                </div>
+                <div className="row">
+                  <button
+                    className="btn secondary"
+                    onClick={() => dispatch(decreaseQty(it.id))}
+                  >
+                    -
+                  </button>
+                  <span>{it.qty}</span>
+                  <button
+                    className="btn"
+                    onClick={() => dispatch(increaseQty(it.id))}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="btn secondary"
+                    onClick={() => dispatch(removeFromCart(it.id))}
+                    style={{ marginLeft: '10px' }}
+                  >
+                    ✕
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div
+            className="row"
+            style={{ justifyContent: 'space-between', alignItems: 'center' }}
+          >
+            <strong>Total Quantity:</strong>
+            <strong>{totalQty}</strong>
+          </div>
+
+          <div
+            className="row"
+            style={{ justifyContent: 'space-between', alignItems: 'center' }}
+          >
+            <strong>Total Amount:</strong>
+            <strong>${totalAmt.toFixed(2)}</strong>
+          </div>
+
+          <button
+            className="btn secondary"
+            onClick={() => dispatch(clearCart())}
+            style={{ marginTop: '10px' }}
+          >
+            Clear Cart
+          </button>
+        </>
+      )}
+    </section>
+  );
+}

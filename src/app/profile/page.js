@@ -1,28 +1,77 @@
-export const dynamic = "force-dynamic"; // ახალი მონაცემების მისაღებად
+'use client';
+import { useEffect, useState } from 'react';
+import { getToken, clearToken } from '@/lib/auth';
+import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { logout } from '@/store/authSlice';
 
-async function getUser() {
-  const res = await fetch("https://fakestoreapi.com/users/3", { cache: "no-store" });
-  if (!res.ok) throw new Error("Failed to fetch user"); //შეცდომა მონაცემების მიღებისას
-  return res.json(); 
-}
+export default function ProfilePage() {
+  const [ready, setReady] = useState(false);
+  const [user, setUser] = useState(null);
+  const router = useRouter();
+  const dispatch = useDispatch();
 
-export default async function ProfilePage() { 
-  const u = await getUser(); // მომხმარებლის მონაცემების მიღება
-  const fullName = `${u.name?.firstname ?? ""} ${u.name?.lastname ?? ""}`.trim();
+  // ავტორიზაციის შემოწმება და პროფილის წამოღება
+  useEffect(() => {
+    const token = getToken();
+
+    if (!token) {
+      router.replace('/login'); // თუ token არ არის, login-ზე გადავიდეს
+      return;
+    }
+
+    // თუ token არსებობს, ვიღებთ მომხმარებლის მონაცემებს
+    async function fetchUser() {
+      try {
+        const res = await fetch('https://fakestoreapi.com/users/3', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to fetch user');
+        const data = await res.json();
+        setUser(data);
+        setReady(true);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    fetchUser();
+  }, [router]);
+
+  if (!ready) return <p className="p-6 text-center">loading...</p>;
+
+  const fullName = `${user?.name?.firstname ?? ''} ${user?.name?.lastname ?? ''}`.trim();
+
   return (
-    <section className="stack"> 
-      <h1>Profile</h1>
-      <div className="card">
-        <div className="stack">
+    <section className="max-w-2xl mx-auto p-6 space-y-4">
+      <h1 className="text-2xl font-semibold">Profile</h1>
+
+      <div className="border p-4 rounded-md space-y-2">
+        <div>
           <strong>{fullName}</strong>
-          <span className="muted">@{u.username}</span>
-          <div className="row"><span>📧 {u.email}</span><span>📞 {u.phone}</span></div>
+          <div className="text-gray-600">@{user?.username}</div>
+        </div>
+        <div className="flex justify-between text-sm">
+          <span>📧 {user?.email}</span>
+          <span>📞 {user?.phone}</span>
+        </div>
+        <div>
+          <div className="text-gray-500 text-sm">Address:</div>
           <div>
-            <div className="muted">Address</div>
-            <div>{u.address?.number} {u.address?.street}, {u.address?.city}, {u.address?.zipcode}</div>
+            {user?.address?.number} {user?.address?.street}, {user?.address?.city},{' '}
+            {user?.address?.zipcode}
           </div>
         </div>
       </div>
+
+      <button
+        className="border px-4 py-2 rounded hover:bg-gray-100"
+        onClick={() => {
+          clearToken();
+          dispatch(logout());
+          router.replace('/login');
+        }}
+      >
+        Log Out
+      </button>
     </section>
   );
 }
