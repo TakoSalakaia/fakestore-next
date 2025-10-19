@@ -203,13 +203,15 @@ html.dark .logo-accent {
   color: var(--secondary); 
 }
 
-footer { 
-  padding: 2rem 0; 
-  color: var(--secondary); 
+footer {
+  margin-top: auto;
+  color: var(--secondary);
   background: var(--white);
   text-align: center;
-  margin-top: auto;
   box-shadow: none;
+  position: relative;
+  bottom: 5px;
+  width: 100%;
 }
 
 .card .btn-group {
