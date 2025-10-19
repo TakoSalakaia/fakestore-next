@@ -36,6 +36,7 @@ cd fakestore
 npm install
 npm run dev
 
+---
 
 **📁 Project Structure**
 src/
@@ -48,7 +49,7 @@ src/
  ├─ components/       → reusable UI elements (NavBar, Footer, etc.)
  ├─ store/            → Redux slices (authSlice, cartSlice)
  └─ lib/              → API & auth helpers
-
+---
 🧠 Highlights
 
 🎨 Clean, responsive, modern UI
