@@ -208,11 +208,14 @@ footer {
   color: var(--secondary);
   background: var(--white);
   text-align: center;
-  box-shadow: none;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
   position: relative;
-  bottom: 5px;
   width: 100%;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
 }
+
 
 .card .btn-group {
   display: flex;
