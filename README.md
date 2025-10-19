@@ -1,8 +1,66 @@
-# 🛍️ FakeStore
+# 🛍️ FakeStore — Next.js E-Commerce Demo
 
-Next.js project for midterm.  
-Fake online shop with products, product details, cart and profile pages.  
+A modern e-commerce demo built with **Next.js 14**, **Redux Toolkit**, and **FakeStoreAPI**.  
+Includes **Login**, **Cart**, **Profile**, and **Dark/Light Theme** features.
 
-Open [http://localhost:3000](http://localhost:3000/products)
-to see the app.
- 
+🔗 **Live Demo:** [your-vercel-link-here]  
+💻 **Repository:** [your-github-link-here]
+
+---
+
+## 🧩 Features
+- 🛒 Browse products from [FakeStoreAPI](https://fakestoreapi.com)
+- 🔍 View detailed product pages
+- ➕ Add, remove, and update items in cart (Redux)
+- 👤 Login with validation (**React Hook Form + Yup**)
+- 💾 “Remember me” saves token in **localStorage**
+- 🌙 Dark / Light theme toggle
+- 🧠 Profile page with server-side fetching
+
+---
+
+## ⚙️ Tech Stack
+- **Next.js 14 (App Router)**
+- **React / Redux Toolkit**
+- **React Hook Form + Yup**
+- **FakeStoreAPI**
+- **CSS Modules / Custom Design**
+- **Vercel Deployment**
+
+---
+
+## 🚀 Run Locally
+
+git clone <repo-url>
+cd fakestore
+npm install
+npm run dev
+
+
+**📁 Project Structure**
+src/
+ ├─ app/
+ │   ├─ products/     → product list & detail pages
+ │   ├─ login/        → login page with validation
+ │   ├─ profile/      → user profile (SSR)
+ │   └─ cart/         → cart management
+ │
+ ├─ components/       → reusable UI elements (NavBar, Footer, etc.)
+ ├─ store/            → Redux slices (authSlice, cartSlice)
+ └─ lib/              → API & auth helpers
+
+ **🧠 Highlights**
+
+Clean, responsive, modern UI
+
+Persistent login using stored token
+
+Redux global state for cart & auth
+
+Server-side fetching for profile
+
+API integration with FakeStore
+
+Custom dark/light theme system
+
+Modular structure & reusable components
