@@ -36,23 +36,6 @@ cd fakestore
 npm install
 npm run dev
 
----
-
-## 📁 Project Structure
-
----
-
-src/
-**├─ app/ **
-**│ ├─ products/ → product list & detail pages**
-**│ ├─ login/ → login page with validation**
-**│ ├─ profile/ → user profile (SSR)**
-**│ └─ cart/ → cart management**
-**│**
-**├─ components/ → reusable UI elements (NavBar, Footer, etc.)**
-**├─ store/ → Redux slices (authSlice, cartSlice)**
-**└─ lib/ → API & auth helpers**
-
 
 ---
 
