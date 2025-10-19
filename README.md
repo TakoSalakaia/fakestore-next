@@ -49,18 +49,18 @@ src/
  ├─ store/            → Redux slices (authSlice, cartSlice)
  └─ lib/              → API & auth helpers
 
- **🧠 Highlights**
+🧠 Highlights
 
-Clean, responsive, modern UI
+🎨 Clean, responsive, modern UI
 
-Persistent login using stored token
+🔐 Persistent login using stored token
 
-Redux global state for cart & auth
+🛒 Redux global state for cart & auth
 
-Server-side fetching for profile
+⚙️ Server-side fetching for profile
 
-API integration with FakeStore
+🌙 Dark/Light theme toggle
 
-Custom dark/light theme system
+💾 Remember me saves token in localStorage
 
-Modular structure & reusable components
+🧩 Reusable, modular components
