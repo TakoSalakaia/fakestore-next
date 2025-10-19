@@ -38,7 +38,9 @@ npm run dev
 
 ---
 
-**📁 Project Structure**
+## 📁 Project Structure
+
+
 src/
  ├─ app/
  │   ├─ products/     → product list & detail pages
@@ -49,19 +51,17 @@ src/
  ├─ components/       → reusable UI elements (NavBar, Footer, etc.)
  ├─ store/            → Redux slices (authSlice, cartSlice)
  └─ lib/              → API & auth helpers
+
 ---
-🧠 Highlights
 
-🎨 Clean, responsive, modern UI
+## 🧠 Highlights
 
-🔐 Persistent login using stored token
+- 🎨 **Clean, responsive, modern UI**
+- 🔐 **Persistent login** using stored token
+- 🛒 **Redux global state** for cart & auth
+- ⚙️ **Server-side fetching** for profile
+- 🌙 **Dark/Light theme toggle**
+- 💾 **“Remember me”** saves token in localStorage
+- 🧩 **Reusable, modular components**
 
-🛒 Redux global state for cart & auth
-
-⚙️ Server-side fetching for profile
-
-🌙 Dark/Light theme toggle
-
-💾 Remember me saves token in localStorage
-
-🧩 Reusable, modular components
+---
