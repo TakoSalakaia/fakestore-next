@@ -3,8 +3,8 @@
 A modern e-commerce demo built with **Next.js 14**, **Redux Toolkit**, and **FakeStoreAPI**.  
 Includes **Login**, **Cart**, **Profile**, and **Dark/Light Theme** features.
 
-🔗 **Live Demo:** [your-vercel-link-here]  
-💻 **Repository:** [your-github-link-here]
+🔗 **Live Demo:** [[your-vercel-link-here](https://vercel.com/takos-projects-7f7ff30c/fakestore-next)]  
+💻 **Repository:** [[your-github-link-here](https://github.com/TakoSalakaia/fakestore-next/)]
 
 ---
 
